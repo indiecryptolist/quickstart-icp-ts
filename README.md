@@ -73,7 +73,7 @@ If you would like your canister to autoreload on file changes:
 AZLE_AUTORELOAD=true dfx deploy
 ```
 
-View your frontend in a web browser at http://[canisterId].raw.localhost:8000.
+View your frontend in a web browser at `http://[canisterId].raw.localhost:4943`
 
 To obtain your application's [canisterId]:
 
