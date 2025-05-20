@@ -52,7 +52,9 @@
       const { useState, useEffect } = React;
 
       function AzleApp() {
-        const [dbData, setDbData] = useState("Loading...");
+        const [dbData, setDbData] = useState(
+          "Loading... click 'getDB' to fetch server timestamp"
+        );
 
         // Get canister origin - in a real app, you'd need to set this value
         // This replaces the import.meta.env.VITE_CANISTER_ORIGIN
@@ -114,6 +116,19 @@
             <div>
               <button onClick={updateDb}>POST /db/update</button>
             </div>
+
+            <br />
+            <br />
+            <a
+              href="https://x.com/Theo_Popov/status/1922309504793706748"
+              target="_blank"
+            >
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/arbitrage-bot-ea10c.appspot.com/o/generic-sharing%2Findie%2Ftheo.png?alt=media&token=48500e8c-f5fa-4d67-81db-d9fbf0d6960a"
+                alt="IndieCrypto Snippet"
+                style={{ maxWidth: "600px", height: "auto" }}
+              />
+            </a>
           </div>
         );
       }
