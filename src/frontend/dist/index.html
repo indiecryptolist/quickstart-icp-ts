@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IndieCrypto Boilerplate</title>
+
+    <!-- React Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      #db {
+        background-color: #f8f8f8;
+        padding: 1rem;
+        border-radius: 4px;
+        border-left: 4px solid #4caf50;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      function AzleApp() {
+        const [dbData, setDbData] = useState("Loading...");
+
+        // Get canister origin - in a real app, you'd need to set this value
+        // This replaces the import.meta.env.VITE_CANISTER_ORIGIN
+        const CANISTER_ORIGIN = window.location.origin; // Update this as needed
+
+        // Equivalent to the constructor + getDb in the original
+        useEffect(() => {
+          getDb();
+        }, []);
+
+        const getDb = async () => {
+          setDbData("Loading...");
+
+          try {
+            const response = await fetch(`${CANISTER_ORIGIN}/db`);
+            const responseJson = await response.json();
+
+            console.log("responseJson =", responseJson);
+            setDbData(responseJson);
+          } catch (error) {
+            console.error("Error fetching data:", error);
+            setDbData("Error loading data");
+          }
+        };
+
+        const updateDb = async () => {
+          setDbData("Loading...");
+
+          try {
+            const response = await fetch(`${CANISTER_ORIGIN}/db/update`, {
+              method: "POST",
+              headers: [["Content-Type", "application/json"]],
+              body: JSON.stringify({
+                timestamp: Date.now(),
+              }),
+            });
+            const responseJson = await response.json();
+            setDbData(responseJson);
+          } catch (error) {
+            console.error("Error updating data:", error);
+            setDbData("Error updating data");
+          }
+        };
+
+        return (
+          <div>
+            <h1>IndieCrypto Boilerplate</h1>
+
+            <p id="db">db: {JSON.stringify(dbData)}</p>
+
+            <br />
+
+            <div>
+              <button onClick={getDb}>GET /db</button>
+            </div>
+
+            <br />
+
+            <div>
+              <button onClick={updateDb}>POST /db/update</button>
+            </div>
+          </div>
+        );
+      }
+
+      // Render the React app
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<AzleApp />);
+    </script>
+  </body>
+</html>
