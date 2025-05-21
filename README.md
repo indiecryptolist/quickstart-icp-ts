@@ -2,8 +2,7 @@
 
 This boilerplate uses Azle to write Internet Computer DApps (ICP Decentralized Apps) using traditional HTTP REST patterns. Use it for backend code. You can use any frontend.
 
-
-![banner](https://github.com/user-attachments/assets/d52e6092-d69d-4afb-ae67-88e0ddfcf324)
+![IndieCrypto Github](https://github.com/user-attachments/assets/6b52aa6b-b572-4269-a552-a79a2634e6c5)
 
 Curated by IndieCrypto <> ICP United Kingdom
 
