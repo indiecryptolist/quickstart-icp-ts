@@ -30,6 +30,9 @@ By including this file, the repo owner(s) certify the following:
 - **Short Description (1–3 sentences):**  
   _What does your project do? What problem does it solve?_
 
+- **Mainnet Canister ID:**  
+  _e.g., dxo4m-laaaa-aaaak-apdta-cai
+
 - **Demo Link / Screenshots (if any):**  
   _URL, video demo, or images_
 
